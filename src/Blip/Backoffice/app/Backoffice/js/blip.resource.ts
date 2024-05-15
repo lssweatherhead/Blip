@@ -31,8 +31,8 @@ export class BlipResource {
           const blockConfig = sourceProperty.config.blocks.find(b => b.contentElementTypeKey === block.contentTypeKey);
           const contentType = scaffolds[block.contentTypeKey];
 
-          const settingsUdi = sourceProperty.value.layout[sourceProperty.editor].find(l => l.contentUdi === block.udi).settingsUdi || '';
-          const settingsData = sourceProperty.value.settingsData.find(d => d.udi === settingsUdi);
+          const layoutData = sourceProperty.value.layout[sourceProperty.editor].find(l => l.contentUdi === block.udi);
+          const settingsData = layoutData && layoutData.settingsUdi ? sourceProperty.value.settingsData.find(d => d.udi === layoutData.settingsUdi) : {};
 
           if (blockConfig.label) {
             const labelVars = Object.assign({
